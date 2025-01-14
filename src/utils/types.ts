@@ -5,4 +5,10 @@ export type PatientDTO = {
     description: string;
     website: string;
     createdAt: Date;
-}
+};
+
+export type Icon = {
+  width?: string
+  height?: string
+  fillColor?: string
+};

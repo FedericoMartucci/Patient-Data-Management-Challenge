@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+import { useState, useEffect } from 'react';
+import './App.css';
 import { getPatients } from './data-provider/service';
-import { PatientDTO } from '@utils/types.ts'
+import { PatientDTO } from './utils/types.ts';
 
 function App() {
   const [patients, setPatients] = useState<PatientDTO[]>([]);

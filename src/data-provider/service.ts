@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { PatientDTO } from '@utils/types.ts'
+import { PatientDTO } from '../utils/types.ts'
+import apiConfig from '../utils/config';
 
-const url: string = import.meta.env.VITE_PATIENTS_URL;
+const url: string = apiConfig.apiUrl;
 
 export const getPatients = async (): Promise<PatientDTO[] | null> => {
   const res = await axios.get(`${url}`)
