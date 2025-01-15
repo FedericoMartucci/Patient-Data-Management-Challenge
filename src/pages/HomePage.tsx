@@ -38,7 +38,7 @@ const HomePage = (): JSX.Element => {
 
   return screen.width >= 768 ? (
     <div className="h-full w-full flex items-center">
-      <div className="max-w-[50%] w-full h-full">
+      <div className="flex flex-col max-w-[50%] w-full h-full items-center gap-4">
         <PatientList isLoading={isLoading} />
         <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
         <div className="w-full max-w-[400px]">
@@ -66,8 +66,8 @@ const HomePage = (): JSX.Element => {
     <div className="h-full w-full flex flex-col">
       <PatientList isLoading={isLoading} />
         <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
-        <div className="w-full max-w-[400px]">
-          <Button onClick={() => setShowModal(true)}>Add Patient</Button>
+        <div className="w-full">
+          <Button onClick={() => setShowModal(true)}>Add a patient</Button>
         </div>
       {currentPatient.id !== 0 && (
         <Modal onClose={() => navigate("/")} show={currentPatient.id !== 0}>
