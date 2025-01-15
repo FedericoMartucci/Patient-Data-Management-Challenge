@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
 import { getPatients } from '../data-provider/service';
 import { PatientDTO } from '../utils/types.ts';
+import PatientList from '../components/PatientList/PatientList.tsx';
+import Button from '../components/Button/Button.tsx';
 
 function HomePage() {
   const [patients, setPatients] = useState<PatientDTO[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const handlePatients = async () => {
     try {
+      setIsLoading(true);
       const data = await getPatients();
       if(data)
         setPatients(data);
     } catch (e) {
       console.error("Error fetching patients");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -21,15 +27,11 @@ function HomePage() {
 
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">
-        Patients
-      </h1>
-      <ul>
-      {
-        patients.map((patient: PatientDTO, idx: number) => <li key={idx}>{patient.name}</li>)
-      }
-      </ul>
+    <div className="flex flex-col items-center justify-between w-full gap-10 max-w-[90%] bg-extrawhite rounded-3xl p-10 max-h-[600px] min-h-[600px] h-full">
+      <PatientList patients={patients} isLoading={isLoading} />
+      <div className="w-full max-w-[400px]">
+        <Button onClick={() => {}}>Add Patient</Button>
+      </div>
     </div>
   )
 }
