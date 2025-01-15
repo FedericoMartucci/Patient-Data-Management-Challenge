@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
-import * as icons from "../Icon/index";
-import { cva, type VariantProps } from "class-variance-authority";
-import Body2 from "../../utils/typography/body2/body2";
-import HelperText from "../../utils/typography/helpertext/helpertext";
-import Body1 from "../../utils/typography/body1/body1";
-import Icon from "../Icon/Icon";
-import config from "../../../tailwind.config";
+import { useEffect, useState } from 'react';
+import * as icons from '../Icon/index';
+import { cva, type VariantProps } from 'class-variance-authority';
+import Body2 from '../../utils/typography/body2/body2';
+import HelperText from '../../utils/typography/helpertext/helpertext';
+import Body1 from '../../utils/typography/body1/body1';
+import Icon from '../Icon/Icon';
+import config from '../../../tailwind.config';
 
 const inputVariants = cva(
-  ["border-none outline-none py-3 px-4 w-full font-poppins font-extralight"],
+  ['border-none outline-none py-3 px-4 w-full font-poppins font-extralight'],
   {
     variants: {
       variant: {
-        default: ["placeholder-gray-400 text-gray-800 cursor-text"],
-        error: ["placeholder-lighterror bg-transparent text-lighterror"],
-        disabled: ["disabled:bg-gray-300/10 rounded-sm", "cursor-not-allowed"]
+        default: ['placeholder-gray-400 text-gray-800 cursor-text'],
+        error: ['placeholder-lighterror/70 bg-transparent text-lighterror'],
+        disabled: ['disabled:bg-gray-300/10 rounded-sm', 'cursor-not-allowed']
       }
     },
     defaultVariants: {
-      variant: "default"
+      variant: 'default'
     }
   }
 );
@@ -26,7 +26,7 @@ export interface InputProps
   extends VariantProps<typeof inputVariants>,
     React.HTMLAttributes<HTMLInputElement> {
   value?: string;
-  type?: "text";
+  type?: 'text';
   helpertext?: string;
   icon?: keyof typeof icons;
   label?: string;
@@ -39,18 +39,18 @@ export interface InputProps
 }
 
 const Input = ({
-  value = "",
+  value = '',
   className,
   variant,
-  type = "text",
-  helpertext = "",
-  label = "",
+  type = 'text',
+  helpertext = '',
+  label = '',
   required = false,
   handleValue,
-  placeholder = "",
-  defaultValue = "",
+  placeholder = '',
+  defaultValue = '',
   icon,
-  error = ""
+  error = ''
 }: InputProps): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>(value);
   const [isHovered, setIsHovered] = useState<boolean>(false);
@@ -58,22 +58,22 @@ const Input = ({
   const colors = config.theme.extend.colors;
 
   const hoverBorderColor =
-    variant === "error"
+    variant === 'error'
       ? colors.error
       : isHovered || isFocused
         ? colors.secondary
-        : colors.gray["200"];
+        : colors.gray['200'];
 
   useEffect(() => {
     setInputValue(value);
   }, [value]);
 
   const textColor: string =
-    variant === "error"
-      ? "text-error"
-      : variant === "disabled"
-        ? "text-gray-300"
-        : "text-white";
+    variant === 'error'
+      ? 'text-error'
+      : variant === 'disabled'
+        ? 'text-gray-300'
+        : 'text-white';
 
   const handleChange = (textEntered: string): void => {
     setInputValue(textEntered);
@@ -93,14 +93,14 @@ const Input = ({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        {label !== "" && (
+        {label !== '' && (
           <div className="flex">
             <Body1
-              className={`${variant === "disabled" ? "text-black" : "text-gray-800"} flex items-center font-extralight`}
+              className={`${variant === 'disabled' ? 'text-black' : 'text-gray-900'} flex items-center font-extralight`}
             >
               {label}
             </Body1>
-            {variant !== "disabled" && required && (
+            {variant !== 'disabled' && required && (
               <Body2 className="text-error flex text-sm font-normal">
                 &nbsp;*
               </Body2>
@@ -120,26 +120,26 @@ const Input = ({
             required={required}
             placeholder={placeholder}
             onChange={(e) => handleChange(e.target.value)}
-            disabled={variant === "disabled"}
+            disabled={variant === 'disabled'}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          {inputValue !== "" && (
+          {inputValue !== '' && (
             <button
-              onClick={() => handleChange("")}
+              onClick={() => handleChange('')}
               className="rounded-full hover:bg-gray-100 p-0.5"
               type="button"
               title="Reset input value"
             >
-              <Icon name={"DismissIcon"} fillColor="#120340" />
+              <Icon name={'DismissIcon'} fillColor="#120340" />
             </button>
           )}
         </div>
       </div>
-      {helpertext !== "" && (
+      {helpertext !== '' && (
         <HelperText className={textColor}>{helpertext}</HelperText>
       )}
-      {error !== "" && <HelperText className={textColor}>{error}</HelperText>}
+      {error !== '' && <HelperText className={textColor}>{error}</HelperText>}
     </div>
   );
 };

@@ -1,16 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import { useCurrentPatient } from "../../redux/hooks";
+import { useAppDispatch, useCurrentPatient, usePatients } from "../../redux/hooks";
 import NoAvatar from "../NoAvatar/NoAvatar";
 import Body1 from "../../utils/typography/body1/body1";
 import H1 from "../../utils/typography/h1/h1";
 import Body2 from "../../utils/typography/body2/body2";
 import Button from "../Button/Button";
+import DeletePatientModal from "../Modal/DeletePatientModal/DeletePatientModal";
+import { setCurrentPatient, setPatients } from "../../redux/patient";
 
 const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
-  const currentPatient = useCurrentPatient();
   const [showFullText, setShowFullText] = useState<boolean>(false);
   const [hasOverflow, setHasOverflow] = useState<boolean>(false);
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
+
+  const currentPatient = useCurrentPatient();
+  const patients = usePatients();
+    const dispatch = useAppDispatch();
 
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -37,12 +43,31 @@ const PatientDetail = () => {
     setShowFullText(!showFullText);
   };
 
-  const handleDelete = (): void => {};
+  const handleDelete = (): void => {
+    if (!currentPatient || currentPatient.id === 0) {
+        console.error("No patient selected to be deleted.");
+        return;
+      }
+    
+      const updatedPatients = patients.filter(patient => patient.id !== currentPatient.id);
+    
+      dispatch(setPatients(updatedPatients));
+      dispatch(setCurrentPatient({id: 0, name: "", description: "", avatar: "", website: "", createdAt: ""}))
+      setShowDeleteModal(false);
+  };
 
   const handleEdit = (): void => {};
 
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-full">
+        <DeletePatientModal
+        onClose={() => {
+          setShowDeleteModal(false)
+        }}
+        handleDelete={handleDelete}
+        show={showDeleteModal}
+        patientId={currentPatient.id}
+      />
       <div className="w-full flex justify-between items-start">
         <div className="min-w-20 min-h-20 rounded-full">
           {currentPatient.avatar !== "" && !isImageError ? (
@@ -110,7 +135,9 @@ const PatientDetail = () => {
         <Button onClick={handleEdit} variant={"outline"}>
           Edit
         </Button>
-        <Button onClick={handleDelete} variant={"error"}>
+        <Button onClick={() => {
+          setShowDeleteModal(true)
+        }} variant={"error"}>
           Delete
         </Button>
       </div>

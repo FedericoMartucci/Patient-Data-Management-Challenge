@@ -38,7 +38,7 @@ const HomePage = (): JSX.Element => {
 
   return screen.width >= 768 ? (
     <div className="h-full w-full flex items-center">
-      <div className="flex flex-col max-w-[50%] w-full h-full items-center gap-4">
+      <div className="flex flex-col max-w-[50%] w-full h-full items-center justify-between gap-4">
         <PatientList isLoading={isLoading} />
         <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
         <div className="w-full max-w-[400px]">
