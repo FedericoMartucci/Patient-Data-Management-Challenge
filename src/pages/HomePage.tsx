@@ -56,19 +56,18 @@ const HomePage = (): JSX.Element => {
       ) : (
         <div className="flex items-center justify-center w-full">
           <div className="w-1/2 ml-10">
-
-          <img src="/transparent-medify-logo-2.png" alt="Medify logo" />
+            <img src="/transparent-medify-logo-2.png" alt="Medify logo" />
           </div>
-          </div>
+        </div>
       )}
     </div>
   ) : (
     <div className="h-full w-full flex flex-col">
       <PatientList isLoading={isLoading} />
-        <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
-        <div className="w-full">
-          <Button onClick={() => setShowModal(true)}>Add a patient</Button>
-        </div>
+      <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
+      <div className="w-full">
+        <Button onClick={() => setShowModal(true)}>Add a patient</Button>
+      </div>
       {currentPatient.id !== 0 && (
         <Modal onClose={() => navigate("/")} show={currentPatient.id !== 0}>
           <div className="flex flex-col justify-end mt-[90px]">

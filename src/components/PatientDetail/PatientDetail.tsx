@@ -4,6 +4,7 @@ import NoAvatar from "../NoAvatar/NoAvatar";
 import Body1 from "../../utils/typography/body1/body1";
 import H1 from "../../utils/typography/h1/h1";
 import Body2 from "../../utils/typography/body2/body2";
+import Button from "../Button/Button";
 
 const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
@@ -35,21 +36,25 @@ const PatientDetail = () => {
   const toggleTextVisibility = (): void => {
     setShowFullText(!showFullText);
   };
+
+  const handleDelete = (): void => {};
+
+  const handleEdit = (): void => {};
+
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-full">
       <div className="w-full flex justify-between items-start">
         <div className="min-w-20 min-h-20 rounded-full">
-
-        {currentPatient.avatar !== "" && !isImageError ? (
+          {currentPatient.avatar !== "" && !isImageError ? (
             <img
-            src={currentPatient.avatar}
-            alt={currentPatient.name + "'s avatar"}
-            className="w-20 h-20 rounded-full"
-            onError={() => setIsImageError(true)}
+              src={currentPatient.avatar}
+              alt={currentPatient.name + "'s avatar"}
+              className="w-20 h-20 rounded-full"
+              onError={() => setIsImageError(true)}
             />
-        ) : (
+          ) : (
             <NoAvatar text={currentPatient.name} />
-        )}
+          )}
         </div>
         <div className="flex flex-col justify-center">
           <H1>Patient #{currentPatient.id}</H1>
@@ -69,37 +74,45 @@ const PatientDetail = () => {
         </Body2>
       </div>
       <div className="overflow-y-auto h-full">
-      <div className="flex flex-col gap-2 items-start w-full">
-        <div
-          className="text-ellipsis overflow-hidden w-full"
-          ref={textRef}
-          style={{
-            display: "-webkit-box",
-            WebkitLineClamp: showFullText ? "unset" : 3,
-            WebkitBoxOrient: "vertical",
-            maxHeight: showFullText ? "unset" : "72px",
-            textOverflow: "ellipsis"
-          }}
-        >
-          <Body1 className="min-h-5">{currentPatient.description}</Body1>
+        <div className="flex flex-col gap-2 items-start w-full">
+          <div
+            className="text-ellipsis overflow-hidden w-full"
+            ref={textRef}
+            style={{
+              display: "-webkit-box",
+              WebkitLineClamp: showFullText ? "unset" : 3,
+              WebkitBoxOrient: "vertical",
+              maxHeight: showFullText ? "unset" : "72px",
+              textOverflow: "ellipsis"
+            }}
+          >
+            <Body1 className="min-h-5">{currentPatient.description}</Body1>
+          </div>
+          {currentPatient.description && hasOverflow && !showFullText && (
+            <button
+              className="underline text-primary/70 hover:text-primary active:text transition-colors duration-300"
+              onClick={toggleTextVisibility}
+            >
+              See more
+            </button>
+          )}
+          {currentPatient.description && showFullText && (
+            <button
+              className="underline text-primary/70 hover:text-primary active:text transition-colors duration-300"
+              onClick={toggleTextVisibility}
+            >
+              See less
+            </button>
+          )}
         </div>
-        {currentPatient.description && hasOverflow && !showFullText && (
-          <button
-            className="underline text-primary/70 hover:text-primary active:text transition-colors duration-300"
-            onClick={toggleTextVisibility}
-          >
-            See more
-          </button>
-        )}
-        {currentPatient.description && showFullText && (
-          <button
-            className="underline text-primary/70 hover:text-primary active:text transition-colors duration-300"
-            onClick={toggleTextVisibility}
-          >
-            See less
-          </button>
-        )}
       </div>
+      <div className="flex gap-4 px-4 w-full">
+        <Button onClick={handleEdit} variant={"outline"}>
+          Edit
+        </Button>
+        <Button onClick={handleDelete} variant={"error"}>
+          Delete
+        </Button>
       </div>
     </div>
   );
