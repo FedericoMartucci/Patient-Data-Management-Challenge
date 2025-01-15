@@ -9,7 +9,7 @@ import PatientDetail from "../components/PatientDetail/PatientDetail";
 
 const PatientDetailPage = () => {
   const screen = useScreenSize();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { id: currentPatientId } = useParams();
 
   return screen.width >= 768 ? (
@@ -21,7 +21,7 @@ const PatientDetailPage = () => {
         <div className="flex flex-col justify-between h-full w-full rounded-r-xl">
           <div className="overflow-y-hidden hover:overflow-y-scroll w-full h-full pr-[5px] hover:pr-0">
             <div className="w-full h-full pt-[72px] xl:px-10 px-5 flex flex-col gap-10">
-              <PatientDetail/>
+              <PatientDetail />
             </div>
           </div>
         </div>
@@ -29,15 +29,12 @@ const PatientDetailPage = () => {
     </div>
   ) : (
     <div className="h-full w-full flex flex-col">
-      <HomePage/>
+      <HomePage />
       {currentPatientId !== "" && (
-        <Modal
-          onClose={() => navigate('/')}
-          show={currentPatientId !== ""}
-        >
+        <Modal onClose={() => navigate("/")} show={currentPatientId !== ""}>
           <div className="flex flex-col justify-end mt-[90px]">
             <Button
-              onClick={() => navigate('/')}
+              onClick={() => navigate("/")}
               className="-rotate-90 hover:bg-gray-500 absolute top-0 left-0 rounded-full m-4"
             >
               <Icon name="ChevronIcon" width="32" height="32" />
@@ -50,7 +47,7 @@ const PatientDetailPage = () => {
                 }}
               >
                 <div className="w-screen h-full pt-[72px] px-8 flex flex-col gap-10">
-                    <PatientDetail/>
+                  <PatientDetail />
                 </div>
               </div>
               <div

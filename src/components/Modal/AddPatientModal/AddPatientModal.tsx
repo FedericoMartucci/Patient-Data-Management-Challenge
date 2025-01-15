@@ -5,18 +5,14 @@ import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import { PatientDTO } from "../../../utils/types";
 import Loader from "../../Loader/Loader";
+import { usePatients } from "../../../redux/hooks";
 
 interface AddPatientModalProps {
   onClose: () => void;
   show: boolean;
-  patients: PatientDTO[];
 }
 
-const AddPatientModal: React.FC<AddPatientModalProps> = ({
-  onClose,
-  show,
-  patients
-}) => {
+const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   const [avatar, setAvatar] = useState<string>("");
@@ -28,6 +24,8 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({
     description: "",
     website: ""
   });
+
+  const patients = usePatients();
 
   const validateForm = (): boolean => {
     const newErrors = { name: "", avatar: "", description: "", website: "" };

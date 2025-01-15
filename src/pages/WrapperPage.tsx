@@ -5,7 +5,11 @@ const WrapperPage = (): JSX.Element => {
     <div className="relative flex flex-col justify-center items-center h-screen w-screen bg-[url('/BackgroundImage.png')] bg-cover">
       <div className="absolute top-[16px]">
         <Link to={"/"}>
-          <img className="max-w-[250px] w-[100%]" src="/transparent-medify-logo-white.png" alt="Medify Logo" />
+          <img
+            className="max-w-[250px] w-[100%]"
+            src="/transparent-medify-logo-white.png"
+            alt="Medify Logo"
+          />
         </Link>
       </div>
       <div className="flex items-center justify-center w-full py-10 mx-10">

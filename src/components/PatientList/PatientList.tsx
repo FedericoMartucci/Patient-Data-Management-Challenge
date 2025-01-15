@@ -4,13 +4,14 @@ import Subtitle from "../../utils/typography/subtitle/subtitle";
 import { PatientDTO } from "../../utils/types";
 import Loader from "../Loader/Loader";
 import PatientItem from "./PatientItem/PatientItem";
+import { usePatients } from "../../redux/hooks";
 
 type PatientListProps = {
-  patients: PatientDTO[] | null;
   isLoading: boolean;
 };
 
-const PatientList: React.FC<PatientListProps> = ({ patients, isLoading }) => {
+const PatientList: React.FC<PatientListProps> = ({ isLoading }) => {
+  const patients = usePatients();
   return (
     <div className="flex flex-col w-full items-center max-h-[80%]">
       <div className="flex flex-col gap-4 w-full items-center">
