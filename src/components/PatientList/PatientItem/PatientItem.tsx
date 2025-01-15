@@ -13,12 +13,10 @@ type PatientItemProps = {
 
 const PoemItem: FC<PatientItemProps> = ({ patient }) => {
   const colors = config.theme.extend.colors;
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleClick = () => {
     dispatch(setCurrentPatient(patient));
-    navigate(`/patient/${patient.id}`);
   };
 
   return (

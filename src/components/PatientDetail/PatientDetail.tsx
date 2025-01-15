@@ -4,7 +4,6 @@ import NoAvatar from "../NoAvatar/NoAvatar";
 import Body1 from "../../utils/typography/body1/body1";
 import H1 from "../../utils/typography/h1/h1";
 import Body2 from "../../utils/typography/body2/body2";
-import Button from "../Button/Button";
 
 const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
