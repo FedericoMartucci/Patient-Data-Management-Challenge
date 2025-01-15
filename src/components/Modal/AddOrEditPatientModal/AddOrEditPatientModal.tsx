@@ -1,24 +1,27 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { Modal } from "../Modal";
 import H1 from "../../../utils/typography/h1/h1";
 import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import { PatientDTO } from "../../../utils/types";
 import Loader from "../../Loader/Loader";
-import { useAppDispatch, usePatients } from "../../../redux/hooks";
+import { useAppDispatch, useCurrentPatient, usePatients } from "../../../redux/hooks";
 import { setPatients } from "../../../redux/patient";
 
-interface AddPatientModalProps {
+interface AddOrEditPatientModalProps {
   onClose: () => void;
   show: boolean;
+  edit?: boolean;
 }
 
-const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
+const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, edit = false }) => {
+  const currentPatient = useCurrentPatient();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [name, setName] = useState<string>("");
-  const [avatar, setAvatar] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [website, setWebsite] = useState<string>("");
+  const [name, setName] = useState<string>(edit? currentPatient.name : "");
+  const [avatar, setAvatar] = useState<string>(edit? currentPatient.avatar : "");
+  const [description, setDescription] = useState<string>(edit? currentPatient.description : "");
+  const [website, setWebsite] = useState<string>(edit? currentPatient.website : "");
   const [errors, setErrors] = useState({
     name: "",
     avatar: "",
@@ -68,12 +71,36 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
     setIsLoading(false);
   };
 
+  const handleEditPatient = () => {
+    setIsLoading(true);
+    if (validateForm()) {
+      const updatedPatients: PatientDTO[] = patients.map(patient =>
+        patient.id === currentPatient.id
+          ? {
+              ...patient,
+              name,
+              avatar,
+              description,
+              website,
+            }
+          : patient
+      );
+      dispatch(setPatients(updatedPatients));
+      setName("");
+      setAvatar("");
+      setDescription("");
+      setWebsite("");
+      onClose();
+    }
+    setIsLoading(false);
+  }
+
   return (
     <Modal show={show} onClose={onClose}>
       <div className="relative max-w-[700px] w-[80%] bg-extrawhite rounded-3xl shadow-loginBox gap-10 px-4 py-10">
         <div className="flex flex-col justify-center items-center gap-10">
           <H1 className="text-[30px] leading-[40px] text-center text-wrap text-black">
-            Add Patient
+            {edit? 'Edit' : 'Add'} Patient
           </H1>
           <div className="flex flex-col gap-10 justify-center w-full px-8 py-4">
             <Input
@@ -115,15 +142,15 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
               error={errors.website}
             />
             <Button
-              onClick={handleAddPatient}
+              onClick={edit ? handleEditPatient : handleAddPatient}
               variant="outline"
               disabled={isLoading}
             >
               {isLoading ? (
                 <Loader variant={"black"} size={20} />
-              ) : (
-                "Add Patient"
-              )}
+              ) :
+                edit? 'Edit Patient' : 'Add Patient'
+              }
             </Button>
           </div>
         </div>
@@ -132,4 +159,4 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
   );
 };
 
-export default AddPatientModal;
+export default AddOrEditPatientModal;

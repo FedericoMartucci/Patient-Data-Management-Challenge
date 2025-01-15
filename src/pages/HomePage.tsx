@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getPatients } from "../data-provider/service";
 import PatientList from "../components/PatientList/PatientList.tsx";
 import Button from "../components/Button/Button.tsx";
-import AddPatientModal from "../components/Modal/AddPatientModal/AddPatientModal.tsx";
+import AddOrEditPatientModal from "../components/Modal/AddOrEditPatientModal/AddOrEditPatientModal.tsx";
 import { useAppDispatch, useCurrentPatient } from "../redux/hooks.tsx";
 import { setPatients } from "../redux/patient.tsx";
 import useScreenSize from "../hooks/useScreenSize.ts";
@@ -40,7 +40,7 @@ const HomePage = (): JSX.Element => {
     <div className="h-full w-full flex items-center">
       <div className="flex flex-col max-w-[50%] w-full h-full items-center justify-between gap-4">
         <PatientList isLoading={isLoading} />
-        <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
+        <AddOrEditPatientModal onClose={() => setShowModal(false)} show={showModal} />
         <div className="w-full max-w-[400px]">
           <Button onClick={() => setShowModal(true)}>Add Patient</Button>
         </div>
@@ -64,7 +64,7 @@ const HomePage = (): JSX.Element => {
   ) : (
     <div className="h-full w-full flex flex-col">
       <PatientList isLoading={isLoading} />
-      <AddPatientModal onClose={() => setShowModal(false)} show={showModal} />
+      <AddOrEditPatientModal onClose={() => setShowModal(false)} show={showModal} />
       <div className="w-full">
         <Button onClick={() => setShowModal(true)}>Add a patient</Button>
       </div>

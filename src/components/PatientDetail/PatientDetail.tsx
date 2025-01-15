@@ -7,12 +7,14 @@ import Body2 from "../../utils/typography/body2/body2";
 import Button from "../Button/Button";
 import DeletePatientModal from "../Modal/DeletePatientModal/DeletePatientModal";
 import { setCurrentPatient, setPatients } from "../../redux/patient";
+import AddOrEditPatientModal from "../Modal/AddOrEditPatientModal/AddOrEditPatientModal";
 
 const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
   const [showFullText, setShowFullText] = useState<boolean>(false);
   const [hasOverflow, setHasOverflow] = useState<boolean>(false);
   const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
+  const [showEditModal, setShowEditModal] = useState<boolean>(false)
 
   const currentPatient = useCurrentPatient();
   const patients = usePatients();
@@ -56,10 +58,11 @@ const PatientDetail = () => {
       setShowDeleteModal(false);
   };
 
-  const handleEdit = (): void => {};
-
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-full">
+        <AddOrEditPatientModal onClose={() => {
+          setShowEditModal(false)
+        }} show={showEditModal} edit/>
         <DeletePatientModal
         onClose={() => {
           setShowDeleteModal(false)
@@ -132,7 +135,9 @@ const PatientDetail = () => {
         </div>
       </div>
       <div className="flex gap-4 px-4 w-full">
-        <Button onClick={handleEdit} variant={"outline"}>
+        <Button onClick={() => {
+          setShowEditModal(true)
+        }} variant={"outline"}>
           Edit
         </Button>
         <Button onClick={() => {
