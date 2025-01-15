@@ -16,9 +16,9 @@ const NoAvatar: React.FC<NoAvatarProps> = ({
 }) => {
   return (
     <div
-      className={`w-[${width}px] h-[${height}px] rounded-full bg-primary flex items-center justify-center text-primary-700 p-10 ${className}`}
+    style={{width: `${width}px`, height: `${height}px`}}
+      className={`text-white font-bold text-4xl rounded-full bg-primary flex items-center justify-center text-primary-700 p-10 ${className}`}
     >
-      <Body1 className="text-white font-bold text-3xl">
         {text
           .split(" ")
           .map((name, index, array) => {
@@ -31,7 +31,6 @@ const NoAvatar: React.FC<NoAvatarProps> = ({
             return "";
           })
           .join("")}
-      </Body1>
     </div>
   );
 };

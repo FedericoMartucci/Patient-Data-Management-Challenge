@@ -46,9 +46,9 @@ const HomePage = (): JSX.Element => {
         </div>
       </div>
       {currentPatient.id !== 0 ? (
-        <div className="flex flex-col justify-between h-full w-full rounded-r-xl">
-          <div className="overflow-y-hidden hover:overflow-y-scroll w-full h-full pr-[5px] hover:pr-0">
-            <div className="w-full h-full pt-[72px] xl:px-10 px-5 flex flex-col gap-10">
+        <div className="flex flex-col justify-between h-full w-full">
+          <div className="w-full h-full hover:pr-0">
+            <div className="w-full h-full pt-1 xl:px-10 px-5 flex flex-col gap-10">
               <PatientDetail />
             </div>
           </div>

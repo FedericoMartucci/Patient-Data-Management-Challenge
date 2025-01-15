@@ -38,18 +38,19 @@ const PatientDetail = () => {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="w-full flex justify-between items-start">
+        <div className="min-w-20 min-h-20 rounded-full">
+
         {currentPatient.avatar !== "" && !isImageError ? (
-          <img
+            <img
             src={currentPatient.avatar}
             alt={currentPatient.name + "'s avatar"}
             className="w-20 h-20 rounded-full"
             onError={() => setIsImageError(true)}
-          />
+            />
         ) : (
-          <div className="self-center">
             <NoAvatar text={currentPatient.name} />
-          </div>
         )}
+        </div>
         <div className="flex flex-col justify-center">
           <H1>Patient #{currentPatient.id}</H1>
           <Body1>{currentPatient.name}</Body1>
