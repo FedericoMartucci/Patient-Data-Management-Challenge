@@ -17,10 +17,10 @@ const PoemItem: FC<PatientItemProps> = ({ patient }) => {
       className="flex w-full border-b border-gray-300 hover:bg-gray-200 cursor-pointer transition-colors duration-300"
       key={patient.id}
     >
-      <div className="p-2 flex w-full max-w-[20%] items-center">
+      <div className="p-2 flex min-h-10 w-full max-w-[20%] items-center">
         <Body1 className="truncate leading-[22px]">{patient.name}</Body1>
       </div>
-      <div className=" p-2 flex w-full md:max-w-[76%] max-w-[70%] items-center">
+      <div className=" p-2 flex min-h-10 w-full md:max-w-[76%] max-w-[70%] items-center">
         <Body1 className="truncate leading-[22px]">{patient.description}</Body1>
       </div>
       <div className="-rotate-90 min-w-5 min-h-5 p-1 flex items-center justify-center">

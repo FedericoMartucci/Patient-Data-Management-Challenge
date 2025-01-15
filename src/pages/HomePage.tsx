@@ -27,7 +27,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-between w-full gap-10 max-w-[90%] bg-extrawhite rounded-3xl p-10 max-h-[600px] min-h-[600px] h-full">
+    <>
       <PatientList patients={patients} isLoading={isLoading} />
       <AddPatientModal
         onClose={() => setShowModal(false)}
@@ -37,7 +37,7 @@ function HomePage() {
       <div className="w-full max-w-[400px]">
         <Button onClick={() => setShowModal(true)}>Add Patient</Button>
       </div>
-    </div>
+    </>
   );
 }
 

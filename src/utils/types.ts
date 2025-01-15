@@ -12,3 +12,8 @@ export type Icon = {
   height?: string;
   fillColor?: string;
 };
+
+export type Screen = {
+  width: number;
+  height: number;
+};
