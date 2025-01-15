@@ -5,7 +5,8 @@ import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import { PatientDTO } from "../../../utils/types";
 import Loader from "../../Loader/Loader";
-import { usePatients } from "../../../redux/hooks";
+import { useAppDispatch, usePatients } from "../../../redux/hooks";
+import { setPatients } from "../../../redux/patient";
 
 interface AddPatientModalProps {
   onClose: () => void;
@@ -25,6 +26,7 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
     website: ""
   });
 
+  const dispatch = useAppDispatch();
   const patients = usePatients();
 
   const validateForm = (): boolean => {
@@ -52,10 +54,10 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
         avatar,
         description,
         website,
-        createdAt: new Date(),
-        id: 1
+        createdAt: new Date().toISOString(),
+        id: patients.length > 0? Number(patients[patients.length - 1].id) + 1 : 1
       };
-      patients.push(newPatient);
+      dispatch(setPatients([...patients, newPatient]))
       setName("");
       setAvatar("");
       setDescription("");
@@ -111,7 +113,7 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
               handleValue={setWebsite}
               error={errors.website}
             />
-            <Button onClick={handleAddPatient} variant="outline">
+            <Button onClick={handleAddPatient} variant="outline" disabled={isLoading}>
               {isLoading ? (
                 <Loader variant={"black"} size={20} />
               ) : (

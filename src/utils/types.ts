@@ -4,7 +4,7 @@ export type PatientDTO = {
   avatar: string;
   description: string;
   website: string;
-  createdAt: Date;
+  createdAt: Date | string;
 };
 
 export type Icon = {
