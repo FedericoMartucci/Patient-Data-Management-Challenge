@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "../Modal";
 import H1 from "../../../utils/typography/h1/h1";
 import Input from "../../Input/Input";
@@ -26,7 +26,7 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({
     name: "",
     avatar: "",
     description: "",
-    website: "",
+    website: ""
   });
 
   const validateForm = (): boolean => {
@@ -114,7 +114,11 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({
               error={errors.website}
             />
             <Button onClick={handleAddPatient} variant="outline">
-              {isLoading ? <Loader variant={"black"} size={20} /> : "Add Patient"}
+              {isLoading ? (
+                <Loader variant={"black"} size={20} />
+              ) : (
+                "Add Patient"
+              )}
             </Button>
           </div>
         </div>

@@ -8,7 +8,7 @@ import PatientItem from "./PatientItem/PatientItem";
 type PatientListProps = {
   patients: PatientDTO[] | null;
   isLoading: boolean;
-}
+};
 
 const PatientList: React.FC<PatientListProps> = ({ patients, isLoading }) => {
   return (

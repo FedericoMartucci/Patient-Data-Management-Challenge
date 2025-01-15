@@ -1,5 +1,5 @@
-import React from 'react'
-import { type TypographyTypes } from '../typography.types'
+import React from "react";
+import { type TypographyTypes } from "../typography.types";
 
 const Body1: React.FC<TypographyTypes> = ({ className, children }) => {
   return (
@@ -8,7 +8,7 @@ const Body1: React.FC<TypographyTypes> = ({ className, children }) => {
     >
       {children}
     </p>
-  )
-}
+  );
+};
 
-export default Body1
+export default Body1;

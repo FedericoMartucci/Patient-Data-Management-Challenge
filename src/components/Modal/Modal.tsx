@@ -10,14 +10,14 @@ interface ModalProps {
 export const Modal = ({
   show,
   onClose,
-  children,
+  children
 }: ModalProps): JSX.Element | null => {
   const handleClose = (event: React.MouseEvent): void => {
     if (event.target === event.currentTarget) {
       onClose();
     }
   };
-  
+
   const portalElement = document.getElementById("portal");
   if (!portalElement) {
     return null;

@@ -1,5 +1,5 @@
-import React from 'react'
-import { type TypographyTypes } from '../typography.types'
+import React from "react";
+import { type TypographyTypes } from "../typography.types";
 
 const Subtitle: React.FC<TypographyTypes> = ({ className, children }) => {
   return (
@@ -8,7 +8,7 @@ const Subtitle: React.FC<TypographyTypes> = ({ className, children }) => {
     >
       {children}
     </h4>
-  )
-}
+  );
+};
 
-export default Subtitle
+export default Subtitle;

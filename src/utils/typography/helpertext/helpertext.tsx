@@ -1,5 +1,5 @@
-import React from 'react'
-import { type TypographyTypes } from '../typography.types'
+import React from "react";
+import { type TypographyTypes } from "../typography.types";
 
 const HelperText: React.FC<TypographyTypes> = ({ className, children }) => {
   return (
@@ -8,7 +8,7 @@ const HelperText: React.FC<TypographyTypes> = ({ className, children }) => {
     >
       {children}
     </p>
-  )
-}
+  );
+};
 
-export default HelperText
+export default HelperText;

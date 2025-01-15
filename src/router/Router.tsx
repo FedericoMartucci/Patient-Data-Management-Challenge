@@ -8,8 +8,8 @@ export const ROUTER = createBrowserRouter([
     children: [
       {
         element: <HomePage />,
-        path: "/",
+        path: "/"
       }
-    ],
-  },
+    ]
+  }
 ]);

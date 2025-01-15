@@ -1,5 +1,5 @@
-import React from 'react'
-import { type TypographyTypes } from '../typography.types'
+import React from "react";
+import { type TypographyTypes } from "../typography.types";
 
 const H3: React.FC<TypographyTypes> = ({ className, children }) => {
   return (
@@ -8,7 +8,7 @@ const H3: React.FC<TypographyTypes> = ({ className, children }) => {
     >
       {children}
     </h3>
-  )
-}
+  );
+};
 
-export default H3
+export default H3;

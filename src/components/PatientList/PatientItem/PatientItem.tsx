@@ -6,8 +6,8 @@ import config from "../../../../tailwind.config";
 import { Link } from "react-router-dom";
 
 type PatientItemProps = {
-    patient: PatientDTO;
-}
+  patient: PatientDTO;
+};
 
 const PoemItem: FC<PatientItemProps> = ({ patient }) => {
   const colors = config.theme.extend.colors;

@@ -14,12 +14,12 @@ const inputVariants = cva(
       variant: {
         default: ["placeholder-gray-400 text-gray-800 cursor-text"],
         error: ["placeholder-lighterror bg-transparent text-lighterror"],
-        disabled: ["disabled:bg-gray-300/10 rounded-sm", "cursor-not-allowed"],
-      },
+        disabled: ["disabled:bg-gray-300/10 rounded-sm", "cursor-not-allowed"]
+      }
     },
     defaultVariants: {
-      variant: "default",
-    },
+      variant: "default"
+    }
   }
 );
 export interface InputProps
@@ -88,7 +88,7 @@ const Input = ({
       <div
         className="border-b flex flex-col gap-2 transition-colors duration-300"
         style={{
-          borderBottomColor: hoverBorderColor,
+          borderBottomColor: hoverBorderColor
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -124,26 +124,22 @@ const Input = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-          {
-            inputValue !== "" && (
-              <button
-                onClick={() => handleChange("")}
-                className="rounded-full hover:bg-gray-100 p-0.5"
-                type="button"
-                title="Reset input value"
-              >
-                <Icon name={"DismissIcon"} fillColor="#120340" />
-              </button>
-            )
-          }
+          {inputValue !== "" && (
+            <button
+              onClick={() => handleChange("")}
+              className="rounded-full hover:bg-gray-100 p-0.5"
+              type="button"
+              title="Reset input value"
+            >
+              <Icon name={"DismissIcon"} fillColor="#120340" />
+            </button>
+          )}
         </div>
       </div>
-        {helpertext !== "" && (
-          <HelperText className={textColor}>{helpertext}</HelperText>
-        )}
-        {error !== "" && (
-          <HelperText className={textColor}>{error}</HelperText>
-        )}
+      {helpertext !== "" && (
+        <HelperText className={textColor}>{helpertext}</HelperText>
+      )}
+      {error !== "" && <HelperText className={textColor}>{error}</HelperText>}
     </div>
   );
 };

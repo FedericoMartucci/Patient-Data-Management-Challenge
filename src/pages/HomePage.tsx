@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
-import { getPatients } from '../data-provider/service';
-import { PatientDTO } from '../utils/types.ts';
-import PatientList from '../components/PatientList/PatientList.tsx';
-import Button from '../components/Button/Button.tsx';
-import AddPatientModal from '../components/Modal/AddPatientModal/AddPatientModal.tsx';
+import { useState, useEffect } from "react";
+import { getPatients } from "../data-provider/service";
+import { PatientDTO } from "../utils/types.ts";
+import PatientList from "../components/PatientList/PatientList.tsx";
+import Button from "../components/Button/Button.tsx";
+import AddPatientModal from "../components/Modal/AddPatientModal/AddPatientModal.tsx";
 
 function HomePage() {
   const [patients, setPatients] = useState<PatientDTO[]>([]);
@@ -14,10 +14,9 @@ function HomePage() {
     try {
       setIsLoading(true);
       const data = await getPatients();
-      if(data)
-        setPatients(data);
+      if (data) setPatients(data);
     } catch (e) {
-      console.error("Error fetching patients");
+      console.error("Error fetching patients: ", e);
     } finally {
       setIsLoading(false);
     }
@@ -26,7 +25,6 @@ function HomePage() {
   useEffect(() => {
     handlePatients();
   }, []);
-
 
   return (
     <div className="flex flex-col items-center justify-between w-full gap-10 max-w-[90%] bg-extrawhite rounded-3xl p-10 max-h-[600px] min-h-[600px] h-full">
@@ -40,8 +38,7 @@ function HomePage() {
         <Button onClick={() => setShowModal(true)}>Add Patient</Button>
       </div>
     </div>
-  )
+  );
 }
 
 export default HomePage;
-
