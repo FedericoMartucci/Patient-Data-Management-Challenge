@@ -36,7 +36,7 @@ const PatientDetail = () => {
     setShowFullText(!showFullText);
   };
   return (
-    <div className="flex flex-col justify-center items-center gap-4">
+    <div className="flex flex-col justify-center items-center gap-4 h-full">
       <div className="w-full flex justify-between items-start">
         <div className="min-w-20 min-h-20 rounded-full">
 
@@ -68,6 +68,7 @@ const PatientDetail = () => {
           {currentPatient.createdAt.toString()}
         </Body2>
       </div>
+      <div className="overflow-y-auto h-full">
       <div className="flex flex-col gap-2 items-start w-full">
         <div
           className="text-ellipsis overflow-hidden w-full"
@@ -98,6 +99,7 @@ const PatientDetail = () => {
             See less
           </button>
         )}
+      </div>
       </div>
     </div>
   );
