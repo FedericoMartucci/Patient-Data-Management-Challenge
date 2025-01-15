@@ -55,9 +55,10 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
         description,
         website,
         createdAt: new Date().toISOString(),
-        id: patients.length > 0? Number(patients[patients.length - 1].id) + 1 : 1
+        id:
+          patients.length > 0 ? Number(patients[patients.length - 1].id) + 1 : 1
       };
-      dispatch(setPatients([...patients, newPatient]))
+      dispatch(setPatients([...patients, newPatient]));
       setName("");
       setAvatar("");
       setDescription("");
@@ -113,7 +114,11 @@ const AddPatientModal: React.FC<AddPatientModalProps> = ({ onClose, show }) => {
               handleValue={setWebsite}
               error={errors.website}
             />
-            <Button onClick={handleAddPatient} variant="outline" disabled={isLoading}>
+            <Button
+              onClick={handleAddPatient}
+              variant="outline"
+              disabled={isLoading}
+            >
               {isLoading ? (
                 <Loader variant={"black"} size={20} />
               ) : (

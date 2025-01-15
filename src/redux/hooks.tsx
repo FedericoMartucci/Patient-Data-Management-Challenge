@@ -11,3 +11,5 @@ export const useAppDispatch: DispatchFunc = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const usePatients = (): PatientDTO[] =>
   useAppSelector((state) => state.patient.patients);
+export const useCurrentPatient = (): PatientDTO =>
+  useAppSelector((state) => state.patient.currentPatient);

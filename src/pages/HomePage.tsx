@@ -12,21 +12,21 @@ const HomePage = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  const handlePatients = async () => {
-    try {
-      setIsLoading(true);
-      const data = await getPatients();
-      if (data) dispatch(setPatients(data));
-    } catch (e) {
-      console.error("Error fetching patients: ", e);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const handlePatients = async () => {
+      try {
+        setIsLoading(true);
+        const data = await getPatients();
+        if (data) dispatch(setPatients(data));
+      } catch (e) {
+        console.error("Error fetching patients: ", e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     handlePatients();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

@@ -3,10 +3,19 @@ import { type PatientDTO } from "../utils/types";
 
 interface InitialStateType {
   patients: PatientDTO[];
+  currentPatient: PatientDTO;
 }
 
 export const initialState: InitialStateType = {
-  patients: []
+  patients: [],
+  currentPatient: {
+    id: 0,
+    name: "",
+    avatar: "",
+    description: "",
+    website: "",
+    createdAt: ""
+  }
 };
 
 const userSlice = createSlice({
@@ -15,9 +24,12 @@ const userSlice = createSlice({
   reducers: {
     setPatients: (state, action: PayloadAction<PatientDTO[]>) => {
       state.patients = action.payload;
+    },
+    setCurrentPatient: (state, action: PayloadAction<PatientDTO>) => {
+      state.currentPatient = action.payload;
     }
   }
 });
 
-export const { setPatients } = userSlice.actions;
+export const { setPatients, setCurrentPatient } = userSlice.actions;
 export default userSlice.reducer;
