@@ -100,7 +100,7 @@ const PatientDetail = () => {
             <img
               src={currentPatient.avatar}
               alt={currentPatient.name + "'s avatar"}
-              className="w-20 h-20 rounded-full"
+              className="w-20 h-20 rounded-full object-cover"
               onError={() => setIsImageError(true)}
             />
           ) : (

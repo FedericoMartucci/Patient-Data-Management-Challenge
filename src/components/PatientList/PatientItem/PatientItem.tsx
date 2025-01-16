@@ -3,7 +3,7 @@ import { PatientDTO } from "../../../utils/types";
 import Body1 from "../../../utils/typography/body1/body1";
 import Icon from "../../Icon/Icon";
 import config from "../../../../tailwind.config";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useCurrentPatient } from "../../../redux/hooks";
 import { setCurrentPatient } from "../../../redux/patient";
 
 type PatientItemProps = {
@@ -13,14 +13,17 @@ type PatientItemProps = {
 const PoemItem: FC<PatientItemProps> = ({ patient }) => {
   const colors = config.theme.extend.colors;
   const dispatch = useAppDispatch();
+  const currentPatient = useCurrentPatient();
 
   const handleClick = () => {
     dispatch(setCurrentPatient(patient));
   };
+  
+  const activeStyles = currentPatient.id === patient.id? 'bg-primary text-white' : 'bg-transparent hover:bg-gray-200'
 
   return (
     <div
-      className="flex w-full border-b border-gray-300 hover:bg-gray-200 cursor-pointer transition-colors duration-300"
+      className={`flex w-full border-b border-gray-300 cursor-pointer transition-colors duration-300 ` + activeStyles}
       key={patient.id}
       onClick={handleClick}
     >
@@ -34,7 +37,7 @@ const PoemItem: FC<PatientItemProps> = ({ patient }) => {
         <Icon
           width={"20"}
           height={"20"}
-          fillColor={colors.gray[800]}
+          fillColor={currentPatient.id === patient.id? colors.white : colors.gray[800]}
           name={"ChevronIcon"}
         />
       </div>

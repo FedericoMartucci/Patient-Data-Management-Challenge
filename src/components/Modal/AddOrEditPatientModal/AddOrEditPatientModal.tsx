@@ -129,11 +129,11 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
   return (
     <Modal show={show} onClose={onClose}>
       <div className="relative max-w-[700px] w-[80%] bg-extrawhite rounded-3xl shadow-loginBox gap-10 px-4 py-10">
-        <div className="flex flex-col justify-center items-center gap-10">
+        <div className="flex flex-col justify-center items-center gap-4">
           <H1 className="text-[30px] leading-[40px] text-center text-wrap text-black">
             {edit ? "Edit" : "Add"} Patient
           </H1>
-          <div className="flex flex-col gap-10 justify-center w-full px-8 py-4">
+          <div className="flex flex-col gap-6 justify-center w-full px-8 py-4">
             <Input
               variant={errors.name === "" ? "default" : "error"}
               required
