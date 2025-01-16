@@ -12,6 +12,7 @@ import Button from "../Button/Button";
 import DeletePatientModal from "../Modal/DeletePatientModal/DeletePatientModal";
 import { setCurrentPatient, setPatients } from "../../redux/patient";
 import AddOrEditPatientModal from "../Modal/AddOrEditPatientModal/AddOrEditPatientModal";
+import { useSnackBar } from "../SnackBarProvider/SnackBarProvider";
 
 const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
@@ -23,6 +24,7 @@ const PatientDetail = () => {
   const currentPatient = useCurrentPatient();
   const patients = usePatients();
   const dispatch = useAppDispatch();
+  const { showSnackBar } = useSnackBar();
 
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -58,6 +60,8 @@ const PatientDetail = () => {
     const updatedPatients = patients.filter(
       (patient) => patient.id !== currentPatient.id
     );
+
+    showSnackBar('Patient deleted successfully', 'success');
 
     dispatch(setPatients(updatedPatients));
     dispatch(
