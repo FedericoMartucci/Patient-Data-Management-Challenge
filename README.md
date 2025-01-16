@@ -70,3 +70,4 @@ src/
 - **Persistent Data**: Integrate a backend or local storage for data persistence.
 - **Error Handling**: Implement comprehensive error boundaries for better reliability.
 - **Storybook Integration**: Document reusable components and improve collaboration by introducing Storybook.
+- **Formik for Form Validation**: Replace custom validation logic with Formik for more scalable and robust form handling, including better handling of complex validation rules.
