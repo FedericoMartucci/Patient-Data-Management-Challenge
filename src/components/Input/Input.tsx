@@ -34,7 +34,6 @@ export interface InputProps
   readonly?: boolean;
   placeholder?: string;
   handleValue: (value: string) => void;
-  defaultValue?: string;
   error?: string;
 }
 
@@ -48,7 +47,6 @@ const Input = ({
   required = false,
   handleValue,
   placeholder = '',
-  defaultValue = '',
   icon,
   error = ''
 }: InputProps): JSX.Element => {
@@ -56,7 +54,7 @@ const Input = ({
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const colors = config.theme.extend.colors;
-
+  
   const hoverBorderColor =
     variant === 'error'
       ? colors.error
@@ -80,9 +78,6 @@ const Input = ({
     handleValue(textEntered);
   };
 
-  useEffect(() => {
-    setInputValue(defaultValue);
-  }, [defaultValue]);
   return (
     <div className="gap-2 flex flex-col w-full">
       <div

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Modal } from "../Modal";
 import H1 from "../../../utils/typography/h1/h1";
 import Input from "../../Input/Input";
@@ -6,7 +6,7 @@ import Button from "../../Button/Button";
 import { PatientDTO } from "../../../utils/types";
 import Loader from "../../Loader/Loader";
 import { useAppDispatch, useCurrentPatient, usePatients } from "../../../redux/hooks";
-import { setPatients } from "../../../redux/patient";
+import { setCurrentPatient, setPatients } from "../../../redux/patient";
 
 interface AddOrEditPatientModalProps {
   onClose: () => void;
@@ -49,6 +49,15 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, 
     return isValid;
   };
 
+  useEffect(() => {
+    if(edit === true) {
+      setName(currentPatient.name);
+      setAvatar(currentPatient.avatar);
+      setDescription(currentPatient.description);
+      setWebsite(currentPatient.website);
+    }
+  }, [edit])
+
   const handleAddPatient = () => {
     setIsLoading(true);
     if (validateForm()) {
@@ -86,10 +95,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, 
           : patient
       );
       dispatch(setPatients(updatedPatients));
-      setName("");
-      setAvatar("");
-      setDescription("");
-      setWebsite("");
+      dispatch(setCurrentPatient({...currentPatient, name, avatar, description, website}));
       onClose();
     }
     setIsLoading(false);
