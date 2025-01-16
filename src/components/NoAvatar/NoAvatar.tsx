@@ -1,6 +1,3 @@
-import React from "react";
-import Body1 from "../../utils/typography/body1/body1";
-
 export interface NoAvatarProps {
   text: string;
   className?: string;

@@ -5,7 +5,11 @@ import Input from "../../Input/Input";
 import Button from "../../Button/Button";
 import { PatientDTO } from "../../../utils/types";
 import Loader from "../../Loader/Loader";
-import { useAppDispatch, useCurrentPatient, usePatients } from "../../../redux/hooks";
+import {
+  useAppDispatch,
+  useCurrentPatient,
+  usePatients
+} from "../../../redux/hooks";
 import { setCurrentPatient, setPatients } from "../../../redux/patient";
 
 interface AddOrEditPatientModalProps {
@@ -14,14 +18,24 @@ interface AddOrEditPatientModalProps {
   edit?: boolean;
 }
 
-const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, edit = false }) => {
+const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
+  onClose,
+  show,
+  edit = false
+}) => {
   const currentPatient = useCurrentPatient();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [name, setName] = useState<string>(edit? currentPatient.name : "");
-  const [avatar, setAvatar] = useState<string>(edit? currentPatient.avatar : "");
-  const [description, setDescription] = useState<string>(edit? currentPatient.description : "");
-  const [website, setWebsite] = useState<string>(edit? currentPatient.website : "");
+  const [name, setName] = useState<string>(edit ? currentPatient.name : "");
+  const [avatar, setAvatar] = useState<string>(
+    edit ? currentPatient.avatar : ""
+  );
+  const [description, setDescription] = useState<string>(
+    edit ? currentPatient.description : ""
+  );
+  const [website, setWebsite] = useState<string>(
+    edit ? currentPatient.website : ""
+  );
   const [errors, setErrors] = useState({
     name: "",
     avatar: "",
@@ -50,13 +64,13 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, 
   };
 
   useEffect(() => {
-    if(edit === true) {
+    if (edit === true) {
       setName(currentPatient.name);
       setAvatar(currentPatient.avatar);
       setDescription(currentPatient.description);
       setWebsite(currentPatient.website);
     }
-  }, [edit])
+  }, [edit, currentPatient]);
 
   const handleAddPatient = () => {
     setIsLoading(true);
@@ -83,30 +97,38 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, 
   const handleEditPatient = () => {
     setIsLoading(true);
     if (validateForm()) {
-      const updatedPatients: PatientDTO[] = patients.map(patient =>
+      const updatedPatients: PatientDTO[] = patients.map((patient) =>
         patient.id === currentPatient.id
           ? {
               ...patient,
               name,
               avatar,
               description,
-              website,
+              website
             }
           : patient
       );
       dispatch(setPatients(updatedPatients));
-      dispatch(setCurrentPatient({...currentPatient, name, avatar, description, website}));
+      dispatch(
+        setCurrentPatient({
+          ...currentPatient,
+          name,
+          avatar,
+          description,
+          website
+        })
+      );
       onClose();
     }
     setIsLoading(false);
-  }
+  };
 
   return (
     <Modal show={show} onClose={onClose}>
       <div className="relative max-w-[700px] w-[80%] bg-extrawhite rounded-3xl shadow-loginBox gap-10 px-4 py-10">
         <div className="flex flex-col justify-center items-center gap-10">
           <H1 className="text-[30px] leading-[40px] text-center text-wrap text-black">
-            {edit? 'Edit' : 'Add'} Patient
+            {edit ? "Edit" : "Add"} Patient
           </H1>
           <div className="flex flex-col gap-10 justify-center w-full px-8 py-4">
             <Input
@@ -154,9 +176,11 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({ onClose, show, 
             >
               {isLoading ? (
                 <Loader variant={"black"} size={20} />
-              ) :
-                edit? 'Edit Patient' : 'Add Patient'
-              }
+              ) : edit ? (
+                "Edit Patient"
+              ) : (
+                "Add Patient"
+              )}
             </Button>
           </div>
         </div>

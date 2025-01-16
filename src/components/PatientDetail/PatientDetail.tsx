@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import { useAppDispatch, useCurrentPatient, usePatients } from "../../redux/hooks";
+import {
+  useAppDispatch,
+  useCurrentPatient,
+  usePatients
+} from "../../redux/hooks";
 import NoAvatar from "../NoAvatar/NoAvatar";
 import Body1 from "../../utils/typography/body1/body1";
 import H1 from "../../utils/typography/h1/h1";
@@ -13,12 +17,12 @@ const PatientDetail = () => {
   const [isImageError, setIsImageError] = useState<boolean>(false);
   const [showFullText, setShowFullText] = useState<boolean>(false);
   const [hasOverflow, setHasOverflow] = useState<boolean>(false);
-  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false)
-  const [showEditModal, setShowEditModal] = useState<boolean>(false)
+  const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+  const [showEditModal, setShowEditModal] = useState<boolean>(false);
 
   const currentPatient = useCurrentPatient();
   const patients = usePatients();
-    const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -47,25 +51,40 @@ const PatientDetail = () => {
 
   const handleDelete = (): void => {
     if (!currentPatient || currentPatient.id === 0) {
-        console.error("No patient selected to be deleted.");
-        return;
-      }
-    
-      const updatedPatients = patients.filter(patient => patient.id !== currentPatient.id);
-    
-      dispatch(setPatients(updatedPatients));
-      dispatch(setCurrentPatient({id: 0, name: "", description: "", avatar: "", website: "", createdAt: ""}))
-      setShowDeleteModal(false);
+      console.error("No patient selected to be deleted.");
+      return;
+    }
+
+    const updatedPatients = patients.filter(
+      (patient) => patient.id !== currentPatient.id
+    );
+
+    dispatch(setPatients(updatedPatients));
+    dispatch(
+      setCurrentPatient({
+        id: 0,
+        name: "",
+        description: "",
+        avatar: "",
+        website: "",
+        createdAt: ""
+      })
+    );
+    setShowDeleteModal(false);
   };
 
   return (
     <div className="flex flex-col justify-center items-center gap-4 h-full">
-        <AddOrEditPatientModal onClose={() => {
-          setShowEditModal(false)
-        }} show={showEditModal} edit/>
-        <DeletePatientModal
+      <AddOrEditPatientModal
         onClose={() => {
-          setShowDeleteModal(false)
+          setShowEditModal(false);
+        }}
+        show={showEditModal}
+        edit
+      />
+      <DeletePatientModal
+        onClose={() => {
+          setShowDeleteModal(false);
         }}
         handleDelete={handleDelete}
         show={showDeleteModal}
@@ -135,14 +154,20 @@ const PatientDetail = () => {
         </div>
       </div>
       <div className="flex gap-4 px-4 w-full">
-        <Button onClick={() => {
-          setShowEditModal(true)
-        }} variant={"outline"}>
+        <Button
+          onClick={() => {
+            setShowEditModal(true);
+          }}
+          variant={"outline"}
+        >
           Edit
         </Button>
-        <Button onClick={() => {
-          setShowDeleteModal(true)
-        }} variant={"error"}>
+        <Button
+          onClick={() => {
+            setShowDeleteModal(true);
+          }}
+          variant={"error"}
+        >
           Delete
         </Button>
       </div>

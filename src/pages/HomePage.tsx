@@ -40,7 +40,10 @@ const HomePage = (): JSX.Element => {
     <div className="h-full w-full flex items-center">
       <div className="flex flex-col max-w-[50%] w-full h-full items-center justify-between gap-4">
         <PatientList isLoading={isLoading} />
-        <AddOrEditPatientModal onClose={() => setShowModal(false)} show={showModal} />
+        <AddOrEditPatientModal
+          onClose={() => setShowModal(false)}
+          show={showModal}
+        />
         <div className="w-full max-w-[400px]">
           <Button onClick={() => setShowModal(true)}>Add Patient</Button>
         </div>
@@ -64,7 +67,10 @@ const HomePage = (): JSX.Element => {
   ) : (
     <div className="h-full w-full flex flex-col">
       <PatientList isLoading={isLoading} />
-      <AddOrEditPatientModal onClose={() => setShowModal(false)} show={showModal} />
+      <AddOrEditPatientModal
+        onClose={() => setShowModal(false)}
+        show={showModal}
+      />
       <div className="w-full">
         <Button onClick={() => setShowModal(true)}>Add a patient</Button>
       </div>

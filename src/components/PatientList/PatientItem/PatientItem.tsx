@@ -3,7 +3,6 @@ import { PatientDTO } from "../../../utils/types";
 import Body1 from "../../../utils/typography/body1/body1";
 import Icon from "../../Icon/Icon";
 import config from "../../../../tailwind.config";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../../redux/hooks";
 import { setCurrentPatient } from "../../../redux/patient";
 

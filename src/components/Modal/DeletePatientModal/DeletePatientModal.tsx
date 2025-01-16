@@ -34,20 +34,19 @@ const DeletePatientModal: FC<DeletePatientModalProps> = ({
             Delete <strong>Patient #{patientId}</strong>
           </H1>
           <div className="flex flex-col gap-1">
-
-          <Body1 className="text-gray-900 font-extralight">
-            Are you sure you want to delete this patient from the list?
-          </Body1>
-          <Input
-            value={inputValue}
-            variant="error"
-            type="text"
-            label={`To confirm, please type "Patient #${patientId}" in the box below`}
-            required
-            handleValue={setInputValue}
-            placeholder="Patient ####"
+            <Body1 className="text-gray-900 font-extralight">
+              Are you sure you want to delete this patient from the list?
+            </Body1>
+            <Input
+              value={inputValue}
+              variant="error"
+              type="text"
+              label={`To confirm, please type "Patient #${patientId}" in the box below`}
+              required
+              handleValue={setInputValue}
+              placeholder="Patient ####"
             />
-            </div>
+          </div>
           <div className="flex justify-center gap-6">
             <Button
               variant="outline"
