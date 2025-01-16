@@ -18,12 +18,18 @@ const PoemItem: FC<PatientItemProps> = ({ patient }) => {
   const handleClick = () => {
     dispatch(setCurrentPatient(patient));
   };
-  
-  const activeStyles = currentPatient.id === patient.id? 'bg-primary text-white' : 'bg-transparent hover:bg-gray-200'
+
+  const activeStyles =
+    currentPatient.id === patient.id
+      ? "bg-primary text-white"
+      : "bg-transparent hover:bg-gray-200";
 
   return (
     <div
-      className={`flex w-full border-b border-gray-300 cursor-pointer transition-colors duration-300 ` + activeStyles}
+      className={
+        `flex w-full border-b border-gray-300 cursor-pointer transition-colors duration-300 ` +
+        activeStyles
+      }
       key={patient.id}
       onClick={handleClick}
     >
@@ -37,7 +43,9 @@ const PoemItem: FC<PatientItemProps> = ({ patient }) => {
         <Icon
           width={"20"}
           height={"20"}
-          fillColor={currentPatient.id === patient.id? colors.white : colors.gray[800]}
+          fillColor={
+            currentPatient.id === patient.id ? colors.white : colors.gray[800]
+          }
           name={"ChevronIcon"}
         />
       </div>

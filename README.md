@@ -15,6 +15,7 @@
   - **Smooth Animations**: Adds interactivity with responsive and animated components.
 
 ## Technology Stack
+
 - **React**: For building a modular and interactive user interface.
 - **Vite**: A fast build tool for optimized development.
 - **Redux**: For centralized and predictable state management.
@@ -35,22 +36,27 @@
    git clone [https://github.com/sirius-valley/tricker-front.git](https://github.com/FedericoMartucci/Patient-Data-Management-Challenge)
    cd Patient-Data-Management-Challenge
 
+   ```
+
 2. **Install Dependencies**
 
    ```bash
    npm install
-   
+
+   ```
+
 3. **Create a .env file**
 
 Copy the contents from .env.template adding your custom variables
-
 
 4. **Run the application**
 
    ```bash
    npm run dev
+   ```
 
 ### Project Structure
+
 ```
 src/
 ├── components/         # Reusable components (e.g., Modal, PatientCard, etc.)
@@ -63,10 +69,12 @@ src/
 ```
 
 ### Design Decisions
+
 - **Custom Components**: No external UI libraries were used to highlight proficiency in creating components from scratch.
 - **State Management**: Redux was chosen to manage global state efficiently, enabling predictable behavior for form validation and patient record updates.
 
 ### Future Improvements
+
 - **Persistent Data**: Integrate a backend or local storage for data persistence.
 - **Error Handling**: Implement comprehensive error boundaries for better reliability.
 - **Storybook Integration**: Document reusable components and improve collaboration by introducing Storybook.
