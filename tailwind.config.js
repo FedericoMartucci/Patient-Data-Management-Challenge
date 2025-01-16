@@ -7,6 +7,7 @@ const config = {
         primary: "#4108D1",
         secondary: "#C2085B",
         error: "#EA153C",
+        success: "#A4F572",
         lighterror: "#F3003A",
         white: "#FAFAFA",
         extrawhite: "#FFFFFF",

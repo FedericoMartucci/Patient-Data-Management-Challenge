@@ -61,7 +61,7 @@ const PatientDetail = () => {
       (patient) => patient.id !== currentPatient.id
     );
 
-    showSnackBar('Patient deleted successfully', 'success');
+    showSnackBar('Patient deleted successfully', 'successDelete');
 
     dispatch(setPatients(updatedPatients));
     dispatch(

@@ -10,13 +10,13 @@ import ReactDom from 'react-dom'
 
 interface SnackBar {
   message: string
-  type: 'default' | 'success' | 'error' | 'warning'
+  type: 'default' | 'successEdit' | 'successDelete' | 'successAdd' | 'error'
 }
 
 interface SnackBarContextType {
   showSnackBar: (
     message: string,
-    type: 'default' | 'success' | 'error' | 'warning'
+    type: 'default' | 'successEdit' | 'successDelete' | 'successAdd' | 'error'
   ) => void
 }
 
@@ -50,7 +50,7 @@ export const SnackBarProvider: React.FC<SnackBarProviderProps> = ({
 
   const showSnackBar = (
     message: string,
-    type: 'default' | 'success' | 'error' | 'warning'
+    type: 'default' | 'successEdit' | 'successDelete' | 'successAdd' | 'error'
   ): void => {
     setSnackBars((prev) => [...prev, { message, type }])
   }

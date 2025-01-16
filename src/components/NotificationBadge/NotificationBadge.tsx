@@ -11,9 +11,10 @@ const notificationBadgeVariants = cva(
     variants: {
       variant: {
         default: ['bg-gray-400 text-white'],
-        success: ['bg-secondary text-white'],
-        error: ['bg-error-500 text-white'],
-        warning: ['bg-warning-500 text-black']
+        successDelete: ['bg-secondary text-white'],
+        successEdit: ['bg-primary text-white'],
+        successAdd: ['bg-success text-black'],
+        error: ['bg-error-500 text-white']
       }
     },
     defaultVariants: {
@@ -37,8 +38,9 @@ const NotificationBadge: React.FC<NotificationBadgeProps> = ({
 }) => {
   let dismissIconColor: string
   switch (variant) {
-    case 'error':
-    case 'default':
+    case "default":
+    case "successEdit":
+    case "error":
       dismissIconColor = 'white'
       break
     default:

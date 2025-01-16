@@ -11,6 +11,7 @@ import {
   usePatients
 } from "../../../redux/hooks";
 import { setCurrentPatient, setPatients } from "../../../redux/patient";
+import { useSnackBar } from "../../SnackBarProvider/SnackBarProvider";
 
 interface AddOrEditPatientModalProps {
   onClose: () => void;
@@ -24,6 +25,9 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
   edit = false
 }) => {
   const currentPatient = useCurrentPatient();
+  const dispatch = useAppDispatch();
+  const patients = usePatients();
+  const { showSnackBar } = useSnackBar()
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>(edit ? currentPatient.name : "");
@@ -42,9 +46,6 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
     description: "",
     website: ""
   });
-
-  const dispatch = useAppDispatch();
-  const patients = usePatients();
 
   const validateForm = (): boolean => {
     const newErrors = { name: "", avatar: "", description: "", website: "" };
@@ -89,6 +90,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
       setAvatar("");
       setDescription("");
       setWebsite("");
+      showSnackBar('Patient added successfully', 'successAdd');
       onClose();
     }
     setIsLoading(false);
@@ -118,6 +120,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
           website
         })
       );
+      showSnackBar('Patient edited successfully', 'successEdit');
       onClose();
     }
     setIsLoading(false);
