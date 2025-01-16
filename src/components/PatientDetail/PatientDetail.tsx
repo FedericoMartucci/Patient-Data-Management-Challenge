@@ -133,7 +133,9 @@ const PatientDetail = () => {
               textOverflow: "ellipsis"
             }}
           >
-            <Body1 className="min-h-5">{currentPatient.description}</Body1>
+            <Body1 className="min-h-5 text-wrap">
+              {currentPatient.description}
+            </Body1>
           </div>
           {currentPatient.description && hasOverflow && !showFullText && (
             <button

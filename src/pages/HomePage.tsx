@@ -4,20 +4,17 @@ import PatientList from "../components/PatientList/PatientList.tsx";
 import Button from "../components/Button/Button.tsx";
 import AddOrEditPatientModal from "../components/Modal/AddOrEditPatientModal/AddOrEditPatientModal.tsx";
 import { useAppDispatch, useCurrentPatient } from "../redux/hooks.tsx";
-import { setPatients } from "../redux/patient.tsx";
+import { setCurrentPatient, setPatients } from "../redux/patient.tsx";
 import useScreenSize from "../hooks/useScreenSize.ts";
-import { useNavigate } from "react-router-dom";
 import PatientDetail from "../components/PatientDetail/PatientDetail.tsx";
-import { Modal } from "../components/Modal/Modal.tsx";
-import Icon from "../components/Icon/Icon.tsx";
+import PatientDetailModal from "../components/Modal/PatientDetailModal/PatientDetailModal.tsx";
 
 const HomePage = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showAddModal, setShowAddModal] = useState<boolean>(false);
 
   const screen = useScreenSize();
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const currentPatient = useCurrentPatient();
 
   useEffect(() => {
@@ -36,16 +33,29 @@ const HomePage = (): JSX.Element => {
     handlePatients();
   }, [dispatch]);
 
+  const handleClosePatientModal = (): void => {
+    dispatch(
+      setCurrentPatient({
+        id: 0,
+        name: "",
+        description: "",
+        avatar: "",
+        website: "",
+        createdAt: ""
+      })
+    );
+  };
+
   return screen.width >= 768 ? (
     <div className="h-full w-full flex items-center">
       <div className="flex flex-col max-w-[50%] w-full h-full items-center justify-between gap-4">
         <PatientList isLoading={isLoading} />
         <AddOrEditPatientModal
-          onClose={() => setShowModal(false)}
-          show={showModal}
+          onClose={() => setShowAddModal(false)}
+          show={showAddModal}
         />
         <div className="w-full max-w-[400px]">
-          <Button onClick={() => setShowModal(true)}>Add Patient</Button>
+          <Button onClick={() => setShowAddModal(true)}>Add Patient</Button>
         </div>
       </div>
       {currentPatient.id !== 0 ? (
@@ -65,43 +75,19 @@ const HomePage = (): JSX.Element => {
       )}
     </div>
   ) : (
-    <div className="h-full w-full flex flex-col">
+    <div className="h-full w-full flex flex-col gap-4">
       <PatientList isLoading={isLoading} />
       <AddOrEditPatientModal
-        onClose={() => setShowModal(false)}
-        show={showModal}
+        onClose={() => setShowAddModal(false)}
+        show={showAddModal}
       />
       <div className="w-full">
-        <Button onClick={() => setShowModal(true)}>Add a patient</Button>
+        <Button onClick={() => setShowAddModal(true)}>Add a patient</Button>
       </div>
-      {currentPatient.id !== 0 && (
-        <Modal onClose={() => navigate("/")} show={currentPatient.id !== 0}>
-          <div className="flex flex-col justify-end mt-[90px]">
-            <Button
-              onClick={() => navigate("/")}
-              className="-rotate-90 hover:bg-gray-500 absolute top-0 left-0 rounded-full m-4"
-            >
-              <Icon name="ChevronIcon" width="32" height="32" />
-            </Button>
-            <div className="relative max-h-[70vh] flex flex-col bg-gray-700 items-center h-full max-w-screen border-y border-white/15">
-              <div
-                className="overflow-y-auto"
-                style={{
-                  boxShadow: "inset 0px -104px 47px 0px rgba(0,0,0,1)"
-                }}
-              >
-                <div className="w-screen h-full pt-[72px] px-8 flex flex-col gap-10">
-                  <PatientDetail />
-                </div>
-              </div>
-              <div
-                style={{ width: "calc(100% - 10px)" }}
-                className={`absolute bottom-0 h-[64px] bg-gradient-to-b from-black/10 via-black/60 to-[#000000]`}
-              />
-            </div>
-          </div>
-        </Modal>
-      )}
+      <PatientDetailModal
+        onClose={handleClosePatientModal}
+        show={currentPatient.id !== 0}
+      />
     </div>
   );
 };
