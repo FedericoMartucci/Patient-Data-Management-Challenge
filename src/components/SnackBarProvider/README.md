@@ -5,8 +5,9 @@ The Snackbar component provides a simple way to display brief and temporary mess
 ## Usage
 
 1- Import the SnackBarProvider into your application:
+
 ```javascript
-import { SnackBarProvider } from 'your-snackbar-package';
+import { SnackBarProvider } from "your-snackbar-package";
 
 const App = () => {
   return (
@@ -18,19 +19,21 @@ const App = () => {
 
 export default App;
 ```
+
 2- Use the useSnackbar hook to show messages in your application:
+
 ```javascript
-import { useSnackBar } from '@components/SnackBarProvider/SnackBarProvider';
+import { useSnackBar } from "@components/SnackBarProvider/SnackBarProvider";
 
 const MyComponent = () => {
   const { showSnackBar } = useSnackBar();
 
   const handleSuccess = () => {
-    showSnackBar('Operation completed successfully', 'success');
+    showSnackBar("Operation completed successfully", "success");
   };
 
   const handleError = () => {
-    showSnackBar('An error occurred', 'error');
+    showSnackBar("An error occurred", "error");
   };
 
   return (
@@ -45,6 +48,7 @@ export default MyComponent;
 ```
 
 ## Props
+
 The Snackbar component supports the following props:
 
 - message: (string) The message to be displayed in the Snackbar.

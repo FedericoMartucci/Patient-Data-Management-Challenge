@@ -27,7 +27,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
   const currentPatient = useCurrentPatient();
   const dispatch = useAppDispatch();
   const patients = usePatients();
-  const { showSnackBar } = useSnackBar()
+  const { showSnackBar } = useSnackBar();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>(edit ? currentPatient.name : "");
@@ -90,7 +90,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
       setAvatar("");
       setDescription("");
       setWebsite("");
-      showSnackBar('Patient added successfully', 'successAdd');
+      showSnackBar("Patient added successfully", "successAdd");
       onClose();
     }
     setIsLoading(false);
@@ -120,7 +120,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
           website
         })
       );
-      showSnackBar('Patient edited successfully', 'successEdit');
+      showSnackBar("Patient edited successfully", "successEdit");
       onClose();
     }
     setIsLoading(false);
