@@ -13,10 +13,10 @@ type PatientListProps = {
 const PatientList: React.FC<PatientListProps> = ({ isLoading }) => {
   const patients = usePatients();
   return (
-    <div className="flex flex-col w-full items-center max-h-[80%]">
+    <div className="flex flex-col w-full items-center max-h-[80%] h-full">
       <div className="flex flex-col gap-4 w-full items-center">
         <H1>Patients</H1>
-        <div className="flex w-full border-b border-gray-800">
+        <div className="flex w-full border-b border-gray-800 h-full">
           <div className="p-2 flex min-w-[20%]">
             <H3 className="font-semibold">Name</H3>
           </div>
@@ -30,7 +30,7 @@ const PatientList: React.FC<PatientListProps> = ({ isLoading }) => {
           <Loader variant={"black"} size={80} />
         </div>
       ) : patients && patients.length > 0 ? (
-        <div className="w-full bg-extrawhite overflow-y-auto overflow-x-hidden">
+        <div className="w-full bg-extrawhite overflow-y-auto overflow-x-hidden h-full">
           <div className="flex flex-col w-full">
             {patients.map((patient: PatientDTO) => (
               <PatientItem patient={patient} key={patient.id} />
