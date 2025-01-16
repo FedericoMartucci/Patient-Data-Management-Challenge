@@ -128,10 +128,8 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
 
   useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (
-        event.key === "Enter" && show
-      ) {
-        if( edit === true ) {
+      if (event.key === "Enter" && show) {
+        if (edit === true) {
           handleEditPatient();
         } else {
           handleAddPatient();
@@ -144,7 +142,7 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [ handleEditPatient, handleAddPatient, show]);
+  }, [handleEditPatient, handleAddPatient, show]);
 
   return (
     <Modal show={show} onClose={onClose}>
