@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { Modal } from "../Modal";
 import H1 from "../../../utils/typography/h1/h1";
 import Button from "../../Button/Button";
@@ -19,6 +19,23 @@ const DeletePatientModal: FC<DeletePatientModalProps> = ({
   patientId
 }): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>("");
+
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (
+        event.key === "Enter" &&
+        inputValue === `Patient #${patientId}` &&
+        show
+      ) {
+        handleDelete();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [inputValue, patientId, handleDelete, show]);
 
   return (
     <Modal

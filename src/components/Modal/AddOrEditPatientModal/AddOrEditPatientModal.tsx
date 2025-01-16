@@ -126,6 +126,26 @@ const AddOrEditPatientModal: FC<AddOrEditPatientModalProps> = ({
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    const handleKeyPress = (event: KeyboardEvent) => {
+      if (
+        event.key === "Enter" && show
+      ) {
+        if( edit === true ) {
+          handleEditPatient();
+        } else {
+          handleAddPatient();
+        }
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [ handleEditPatient, handleAddPatient, show]);
+
   return (
     <Modal show={show} onClose={onClose}>
       <div className="relative max-w-[700px] w-[80%] bg-extrawhite rounded-3xl shadow-loginBox gap-10 px-4 py-10">
