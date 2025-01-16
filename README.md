@@ -1,50 +1,72 @@
-# React + TypeScript + Vite
+# Medify: A Patient Data Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+**Medify** is a frontend application designed to enable users to manage patient records efficiently. It allows users to view, edit, and add new patient data through an intuitive and responsive interface. Built with **React** and **TypeScript**, this project demonstrates reusable components, robust form validation, and interactive user interactions without relying on persistent data storage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
 
-## Expanding the ESLint configuration
+- **Patient Records Display**: Retrieves and displays patient data in individual cards.
+- **Expandable Details**: Users can expand/collapse patient cards to view additional information.
+- **Modal-Based Editing and Creation**: Provides a user-friendly modal interface to edit existing records or add new patients.
+- **Form Validation**: Ensures accuracy and completeness of patient data through form validation.
+- **Optional Features**:
+  - **Notifications**: Provides feedback for successful or failed actions.
+  - **Smooth Animations**: Adds interactivity with responsive and animated components.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technology Stack
+- **React**: For building a modular and interactive user interface.
+- **Vite**: A fast build tool for optimized development.
+- **Redux**: For centralized and predictable state management.
+- **TypeScript**: To ensure type safety and maintainability.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname
-    }
-  }
-});
+### Prerequisites
+
+- Node.js (version 20)
+- npm or Yarn
+
+### QuickStart
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone [https://github.com/sirius-valley/tricker-front.git](https://github.com/FedericoMartucci/Patient-Data-Management-Challenge)
+   cd Patient-Data-Management-Challenge
+
+2. **Install Dependencies**
+
+   ```bash
+   npm install
+   
+3. **Create a .env file**
+
+Copy the contents from .env.template adding your custom variables
+
+
+4. **Run the application**
+
+   ```bash
+   npm run dev
+
+### Project Structure
+```
+src/
+├── components/         # Reusable components (e.g., Modal, PatientCard, etc.)
+├── hooks/              # Custom hooks to abstract business logic
+├── pages/              # Page components for different views
+├── redux/              # Global state management with Redux
+├── router/             # Route management and navigation
+├── utils/              # Utility functions (e.g., form validation)
+└── App.tsx             # Main application component
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Design Decisions
+- **Custom Components**: No external UI libraries were used to highlight proficiency in creating components from scratch.
+- **State Management**: Redux was chosen to manage global state efficiently, enabling predictable behavior for form validation and patient record updates.
 
-```js
-// eslint.config.js
-import react from "eslint-plugin-react";
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: "18.3" } },
-  plugins: {
-    // Add the react plugin
-    react
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs["jsx-runtime"].rules
-  }
-});
-```
+### Future Improvements
+- **Persistent Data**: Integrate a backend or local storage for data persistence.
+- **Error Handling**: Implement comprehensive error boundaries for better reliability.
+- **Storybook Integration**: Document reusable components and improve collaboration by introducing Storybook.
